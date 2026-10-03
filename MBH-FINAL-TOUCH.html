@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBH Website</title>
+<style>
+:root{--navy:#0b1b33;--blue:#2f80ed;--bg:#eef5fb;--text:#15243d;--muted:#6b7a90;--card:#fff;--border:#dbe5ef}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}button,input,textarea{font:inherit}.hidden{display:none!important}
+.entry{min-height:100vh;display:grid;place-items:center;padding:28px;background:linear-gradient(145deg,#09172c 0 48%,#eef5fb 48%)}
+.entry-card{width:min(900px,100%);display:grid;grid-template-columns:1fr 1fr;background:var(--white);border-radius:26px;overflow:hidden;box-shadow:0 18px 50px rgba(21,48,82,.12)}
+.entry-left{padding:54px 44px;color:#fff;background:linear-gradient(160deg,#0b1b33,#1c4e85 68%,#2f80ed)}
+.logo{font-size:38px;font-weight:900;letter-spacing:2px}.entry-left h1{font-size:40px;line-height:1.08;margin:72px 0 14px}.entry-left p{color:#dceafa;line-height:1.65}.entry-right{padding:48px}.entry-right h2{font-size:29px;margin:0 0 8px}.muted{color:var(--muted)}
+label{display:block;font-size:14px;font-weight:800;margin-bottom:8px}.field{margin:0 0 16px}input,textarea{width:100%;padding:14px;border:1px solid var(--border);border-radius:11px;background:#fbfdff;outline:0}input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,128,237,.1)}
+.primary{border:0;border-radius:11px;padding:13px 18px;background:var(--blue);color:#fff;font-weight:900;cursor:pointer}.primary:hover{background:#226fd3}.full{width:100%}.secondary{border:1px solid var(--border);border-radius:11px;padding:11px 14px;background:#fff;color:var(--text);font-weight:800;cursor:pointer}.secondary:hover{border-color:var(--blue);color:var(--blue)}
+.msg{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:14px}.error{background:#fff1f1;color:#a02e2e}.success{background:#edf9f2;color:#1e7b4d}.info{background:#eef5ff;color:#285f9c}
+.app{min-height:100vh;display:flex}.sidebar{width:245px;min-height:100vh;position:fixed;left:0;top:0;bottom:0;padding:24px 16px;background:var(--navy);color:#fff}.sidebar .logo{font-size:30px;padding:0 14px 25px}.nav button{width:100%;border:0;border-radius:10px;background:transparent;color:#cad7e7;padding:12px 14px;margin:3px 0;text-align:left;cursor:pointer;font-weight:700}.nav button:hover,.nav button.active{background:rgba(255,255,255,.11);color:#fff}
+.main{margin-left:245px;width:calc(100% - 245px);min-height:100vh}.top{background:var(--white);border-bottom:1px solid var(--border);padding:20px 30px;display:flex;justify-content:space-between;align-items:center}.hello{font-size:20px;font-weight:800}.user{font-weight:800;color:var(--blue)}.content{padding:30px}
+.hero{min-height:245px;border-radius:24px;padding:42px;display:flex;align-items:center;color:#fff;background:linear-gradient(135deg,#0b1b33,#255e98,#3d91ea);box-shadow:0 18px 42px rgba(21,61,105,.18)}.hero h1{font-size:43px;margin:0 0 10px}.hero p{font-size:18px;margin:0;color:#dfedfc}
+.card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--card-shadow)}.section{margin-top:28px}.section h2{font-size:28px;margin:0 0 7px}.class-card{width:100%;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:left;cursor:pointer}.class-card:hover{border-color:var(--blue);box-shadow:0 12px 28px rgba(47,128,237,.1)}
+.subject-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.subject{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:22px;cursor:pointer;box-shadow:var(--card-shadow)}.subject:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(23,50,85,.1)}.icon{font-size:30px}.subject h3{margin:12px 0 6px}.subject p{margin:0;color:var(--muted);font-size:13px}
+.helper-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:16px}.choice{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:18px;text-align:left;cursor:pointer}.choice:hover{border-color:var(--blue);box-shadow:0 10px 24px rgba(47,128,237,.09)}.choice b{display:block;margin-bottom:6px}.choice span{color:var(--muted);font-size:13px}
+.chat{min-height:600px;display:flex;flex-direction:column}.chat-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:14px}.chat-log{flex:1;min-height:390px;max-height:540px;overflow:auto;padding:16px 4px}.bubble{max-width:82%;padding:12px 14px;border-radius:15px;margin:9px 0;line-height:1.55;white-space:pre-wrap}.bubble.ai{background:#f1f6fb;margin-right:auto}.bubble.user{background:#eaf3ff;margin-left:auto}.chat-row{display:flex;gap:10px;border-top:1px solid var(--border);padding-top:14px}.chat-input{flex:1;min-height:54px;resize:vertical}.note{background:#eef5ff;color:#285f9c;padding:12px 14px;border-radius:10px;margin-top:12px;font-size:13px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}footer{text-align:center;color:var(--muted);font-size:13px;padding:28px}
+@media(max-width:900px){.entry-card{grid-template-columns:1fr}.entry-left{display:none}.sidebar{width:210px}.main{margin-left:210px;width:calc(100% - 210px)}.subject-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.entry{padding:16px}.entry-right{padding:30px 24px}.sidebar{position:static;width:100%;min-height:auto}.app{display:block}.main{margin:0;width:100%}.nav{display:grid;grid-template-columns:repeat(3,1fr)}.content{padding:18px}.top{padding:16px 18px}.subject-grid,.helper-grid{grid-template-columns:1fr}.hero{padding:30px;min-height:220px}.hero h1{font-size:32px}.chat-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<section id="entry" class="entry">
+  <div class="entry-card">
+    <div class="entry-left"><div class="logo">MBH</div><h1>Welcome to my MBH website</h1><p>Study • Learn • Grow</p><p>Choose your username. MBH remembers your study location and helper history on this browser.</p></div>
+    <div class="entry-right"><h2>Enter Your User Name</h2><p class="muted">No Login, Sign Up or password on this version.</p><div class="field"><label>User Name</label><input id="username" maxlength="25" placeholder="Enter your username" autocomplete="off"></div><button class="primary full" type="button" onclick="enterSite()">Next</button><div id="entryMsg"></div></div>
+  </div>
+</section>
+
+<section id="app" class="app hidden">
+<aside class="sidebar"><div class="logo">MBH</div><div class="nav"><button id="homeNav" onclick="page('home')">Home</button><button id="classNav" onclick="page('class10')">Class 10th</button><button id="profileNav" onclick="page('profile')">Profile</button><button id="helperNav" onclick="page('helper')">Helper</button></div></aside>
+<main class="main"><header class="top"><div><div class="hello">Welcome to MBH Website</div><div class="muted">Study • Learn • Grow</div></div><div class="top-actions"><div id="userBadge" class="user"></div><button id="themeBtn" class="theme-btn" type="button" onclick="toggleTheme()">🌙 Dark</button></div></header><div id="content" class="content"></div><footer>© 2026 MBH Website. All rights reserved.</footer></main>
+</section>
+
+<script>
+const DB={users:'mbh_users_final_2026',current:'mbh_current_final_2026',progress:'mbh_progress_final_2026',chats:'mbh_chats_final_2026',prefs:'mbh_prefs_final_2026'};
+const SUBJECTS=[['📘','English'],['📕','Urdu'],['📗','Mutalia'],['📖','Quran'],['💻','Computer'],['➗','Math'],['🧪','Chemistry'],['⚛️','Physics']];
+function read(k,d){try{const v=JSON.parse(localStorage.getItem(k)||'null');return v===null?d:v}catch(e){return d}}
+function write(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function user(){return localStorage.getItem(DB.current)||''}
+function normalize(v){return String(v||'').trim().toLowerCase()}
+function enterSite(){const u=normalize(document.getElementById('username').value);if(!u){showEntry('Please enter a username.','error');return}if(!/^[a-z0-9_ -]{2,25}$/.test(u)){showEntry('Use 2–25 letters, numbers, spaces, hyphens or underscore.','error');return}const users=read(DB.users,[]);if(!users.includes(u)){users.push(u);write(DB.users,users)}localStorage.setItem(DB.current,u);const p=read(DB.progress,{});p[u]=p[u]||{page:'home',subject:null,updatedAt:new Date().toISOString()};write(DB.progress,p);openApp()}
+function showEntry(t,c){const e=document.getElementById('entryMsg');e.textContent=t;e.className='msg '+c}
+function openApp(){document.getElementById('entry').classList.add('hidden');document.getElementById('app').classList.remove('hidden');document.getElementById('userBadge').textContent=user();const p=read(DB.progress,{})[user()]||{};if(p.page==='subject'&&p.subject)openSubject(p.subject);else if(p.page==='class10')page('class10');else if(p.page==='helper')page('helper');else page('home')}
+function saveProgress(p,s){const all=read(DB.progress,{});all[user()]={page:p,subject:s||null,updatedAt:new Date().toISOString()};write(DB.progress,all)}
+function active(id){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));if(id)document.getElementById(id).classList.add('active')}
+function page(p){if(p!=='subject')saveProgress(p,null);if(p==='home'){active('homeNav');document.getElementById('content').innerHTML='<section class="hero"><div><h1>Welcome to MBH website</h1><p>Learn • Grow • Achieve</p></div></section><section class="section"><h2>Study</h2><p class="section-sub muted">Select Class 10th to continue.</p><div class="card"><button class="class-card" onclick="page(\'class10\')"><b style="font-size:22px">Class 10th</b><div class="muted" style="margin-top:7px">Open subjects and continue your saved study location.</div></button></div></section>'}
+if(p==='class10'){active('classNav');document.getElementById('content').innerHTML='<section class="section"><h2>Class 10th</h2><p class="section-sub muted">Select a subject.</p><div class="subject-grid">'+SUBJECTS.map(x=>'<div class="subject" onclick="openSubject(\''+x[1]+'\')"><div class="icon">'+x[0]+'</div><h3>'+x[1]+'</h3><p>Open subject</p></div>').join('')+'</div></section>'}
+if(p==='profile'){active('profileNav');document.getElementById('content').innerHTML='<section class="section"><div class="card"><h2>Profile</h2><p><b>User Name:</b> '+esc(user())+'</p><div class="note">Your username and study location are saved in this browser.</div></div></section>'}
+if(p==='helper'){
+  active('helperNav');
+  const pref=read(DB.prefs,{})[user()]||{};
+  document.getElementById('content').innerHTML=
+  '<section class="section"><div class="helper-card card">'+
+  '<h2>AI Helper</h2>'+
+  '<p class="muted">Aap apni zaban aur study maqsad select kar sakte hain. Phir AI Home mein sawal likh sakte hain.</p>'+
+  '<h3>Aap kis zaban mein jawab chahte hain?</h3>'+
+  '<div class="toolbar">'+['اردو','English','پنجابی','Any language'].map(x=>'<button class="secondary" onclick="setPref(\'language\',\''+x+'\')">'+x+'</button>').join('')+'</div>'+
+  '<h3 style="margin-top:22px">Aap kis kaam ke liye aaye hain?</h3>'+
+  '<div class="helper-grid">'+
+  [['Preparation','Tayyari'],['Paper Understanding','Paper samajhna'],['Test','Board / School pattern test'],['First Term','First Term'],['Second Term','Second Term'],['Final / Board','Final / Board'],['Guess / Important Questions','Guess aur important questions'],['General Help','General help']].map(x=>'<button class="choice" onclick="setPref(\'purpose\',\''+x[0]+'\')"><b>'+x[0]+'</b><span>'+x[1]+'</span></button>').join('')+
+  '</div>'+
+  '<div class="tool-card"><b>Study Tools</b><div class="tool-row">'+
+  '<button class="secondary" onclick="studyTool(\'test\')">Make a Test</button>'+
+  '<button class="secondary" onclick="studyTool(\'guess\')">Guess / Important Questions</button>'+
+  '</div></div>'+
+  '<div class="toolbar"><button class="primary" onclick="openChat(\'helper\',null)">Open AI Home</button><button class="secondary" onclick="page(\'class10\')">Go to Class 10th</button></div>'+
+  '</div></section>'
+}
+function studyTool(type){
+  const label=type==='test'?'Make a Test':'Guess / Important Questions';
+  const description=type==='test'
+    ?'Aap subject, class, term aur difficulty bata sakte hain. Final AI backend in details se test tayyar karega.'
+    :'Aap book/PDF, class, board pattern aur topics de sakte hain. Final AI backend online material ko compare karke important questions aur guess tayyar karega.';
+  document.getElementById('content').innerHTML=
+    '<section class="section"><div class="card"><h2>'+label+'</h2>'+
+    '<p class="muted">'+description+'</p>'+
+    '<div class="tool-card"><div class="field"><label>Subject / Topic</label><input id="toolTopic" placeholder="e.g. Class 10 Math Chapter 1"></div>'+
+    '<div class="field"><label>Your instructions</label><textarea id="toolPrompt" rows="5" placeholder="Write what you need..."></textarea></div>'+
+    '<button class="primary" type="button" onclick="submitStudyTool(\''+type+'\')">Continue</button>'+
+    '<div id="toolResult"></div></div>'+
+    '<button class="secondary" style="margin-top:12px" onclick="page(\'helper\')">Back to Helper</button></div></section>';
+}
+function submitStudyTool(type){
+  const topic=document.getElementById('toolTopic').value.trim();
+  const prompt=document.getElementById('toolPrompt').value.trim();
+  if(!topic||!prompt){
+    document.getElementById('toolResult').innerHTML='<div class="message error">Topic aur instructions dono likhein.</div>';
+    return;
+  }
+  document.getElementById('toolResult').innerHTML=
+    '<div class="message success" style="margin-top:12px">Request saved. Is single-file version mein tool ka interface tayyar hai; real AI test/guess generation ko secure AI backend se connect karna hoga.</div>';
+  const k=key('helper',null),all=read(DB.chats,{});
+  all[k]=Array.isArray(all[k])?all[k]:[];
+  all[k].push({role:'user',text:(type==='test'?'Make a Test: ':'Guess / Important Questions: ')+topic+' — '+prompt,time:new Date().toISOString()});
+  write(DB.chats,all);
+}
+
+function setPref(k,v){const all=read(DB.prefs,{});all[user()]=all[user()]||{};all[user()][k]=v;write(DB.prefs,all);page('helper')}
+function openSubject(name){active('classNav');saveProgress('subject',name);document.getElementById('content').innerHTML='<section class="section"><div class="subject-page card"><h2>'+esc(name)+'</h2><p class="muted">This subject has its own AI helper.</p><div class="note">You can later attach the exact Class 10 book/PDF and build the chapter-wise study material here.</div><div class="toolbar"><button class="primary" onclick="openChat(\'subject\',\''+name+'\')">Open '+esc(name)+' AI</button><button class="secondary" onclick="page(\'class10\')">Back to Subjects</button></div></div></section>'}
+function key(mode,subject){return user()+'::'+(mode==='subject'?subject:'helper')}
+function openChat(mode,subject){saveProgress(mode==='subject'?'subject':'helper',subject);const k=key(mode,subject);const chats=read(DB.chats,{});const list=Array.isArray(chats[k])?chats[k]:[];document.getElementById('content').innerHTML='<section class="section"><div class="chat card"><div class="chat-head"><div><h2 style="margin:0">'+esc(mode==='subject'?subject+' AI':'AI Home')+'</h2><div class="muted">'+(mode==='subject'?'Subject-specific helper':'General MBH helper')+'</div></div><button class="secondary" onclick="clearChat(\''+esc(k)+'\')">Clear</button></div><div id="chatLog" class="chat-log"></div><div class="chat-row"><textarea id="chatInput" class="chat-input" placeholder="Type your question here..."></textarea><button class="primary" style="width:auto" onclick="sendChat(\''+mode+'\',\''+esc(subject||'')+'\')">Send</button></div></div></section>';renderChat(k,mode,subject,list)}
+function renderChat(k,mode,subject,list){const log=document.getElementById('chatLog');if(!log)return;let h='';if(list.length===0)h='<div class="bubble ai">Assalam o alaikum! '+(mode==='subject'?'Main '+esc(subject)+' study assistant ki jagah tayyar hoon.':'Main MBH AI Helper ki jagah tayyar hoon.')+' Apna sawal likhein.</div>';for(const x of list)h+='<div class="bubble '+(x.role==='user'?'user':'ai')+'">'+esc(x.text)+'</div>';log.innerHTML=h;log.scrollTop=log.scrollHeight}
+function sendChat(mode,subject){const i=document.getElementById('chatInput'),t=i.value.trim();if(!t)return;const k=key(mode,subject),all=read(DB.chats,{});all[k]=Array.isArray(all[k])?all[k]:[];all[k].push({role:'user',text:t,time:new Date().toISOString()});all[k].push({role:'assistant',text:'Aap ka sawal aur conversation mehfooz ho gayi hai. Is current single-file version mein AI chat/history ka interface mojood hai. Haqiqi AI jawab, PDF analysis aur online web research ke liye secure AI backend/API ko abhi alag connect karna hoga.',time:new Date().toISOString()});write(DB.chats,all);openChat(mode,subject||null)}
+function clearChat(k){const all=read(DB.chats,{});delete all[k];write(DB.chats,all);const p=k.split('::');if(p[1]&&p[1]!=='helper')openChat('subject',p[1]);else openChat('helper',null)}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+(function(){if(user())openApp()})()
+</script>
+</body>
+</html>
